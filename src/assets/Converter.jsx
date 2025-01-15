@@ -7,7 +7,7 @@ const ffmpeg = new FFmpeg({ log: true });
 export default function Converter() {
   const [gifUrl, setGifUrl] = useState(null);
   const [Video, setVideo] = useState(null);
-
+  const [Converting, setConverting] = useState(false)
   useEffect(() => {
     async function loadFFmpeg() {
       await ffmpeg.load();
@@ -25,6 +25,7 @@ export default function Converter() {
     try {
       const videoData = await fetchFile(Video); // Convert file object to buffer
       await ffmpeg.writeFile('video.mp4', videoData); // Save file as video.mp4 in FFmpeg system
+      setConverting(true)
       await ffmpeg.exec([
         '-i',
         'video.mp4',
@@ -36,6 +37,7 @@ export default function Converter() {
       const gifData = await ffmpeg.readFile('output.gif'); // Read the generated GIF file
       const gifBlob = new Blob([gifData.buffer], { type: 'image/gif' });
       const gifObjectUrl = URL.createObjectURL(gifBlob);
+      setConverting(false)
       setGifUrl(gifObjectUrl); // Set URL for displaying the GIF
     } catch (error) {
       console.error('Error during file conversion:', error);
@@ -60,13 +62,10 @@ export default function Converter() {
           <button onClick={ConvertFile}>Convert</button>
         </div>
 
-        {Video && (
-          <video controls>
-            <source src={URL.createObjectURL(Video)} type="video/mp4" />
-          </video>
-        )}
         <br />
-        {gifUrl && <img src={gifUrl} alt="Converted GIF" />}
+        {Converting? "Converting File please wait.." :
+        (gifUrl && <img src={gifUrl} alt="Converted GIF" />)
+        }
       </div>
     </div>
   );
