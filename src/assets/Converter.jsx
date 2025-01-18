@@ -39,7 +39,7 @@ export default function Converter() {
 
     try {
       ffmpeg.on('progress', ({ progress, time }) => {
-        if(progress > 105 || progress < 0.1){setConvertingProgress({time:0 ,progress:5})} else {setConvertingProgress({time: (time / 1000000) ,progress:(progress * 100).toFixed(0)})}
+        if(progress > 105 || progress < 0.01){setConvertingProgress({time:0 ,progress:5})} else {setConvertingProgress({time: (time / 1000000) ,progress:(progress * 100).toFixed(0)})}
     });
 
       const videoData = await fetchFile(Video); // Convert file object to buffer
