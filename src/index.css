@@ -5,11 +5,9 @@
 }
 
 body {
+  width: 100%;  
   margin: 0;
-  width: 100%;  /* lub jeśli chcesz, możesz ustawić konkretną szerokość */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
 }
 
 html {
@@ -17,50 +15,124 @@ html {
   width: 100%;
   height: 100%;
 }
-
-.Container{
-  width: 100%;
+.Container
+{
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  margin: 0;
 }
 .Converter{
-  width: 80%;
+  width: 90%;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Inputs
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #0c0c0c;
+  border-radius: 30px;
+  padding: 20px 0px;
+  width: 350px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-
-
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.Inputs1
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c0c0c;
+  border-radius: 30px;
+  width: 350px;
+  gap: 20px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.InputsContainer
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.Header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Output{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  width: fit-content;
+  transition: 0.5s;
+  padding: 20px;
+}
+.OutputContainer{
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input[type="file"] {
+  visibility: hidden;
+  width: 200px;
+  height: 32px;
+  position: relative;
+  
+}
+input[type="file"]:before {
+  content: attr(placeholder);
+  visibility: visible;
+  position: absolute;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 32px 8px 8px;
+  color: rgba(209, 196, 196, 0.3);
+  overflow: hidden;
+  background-color: #424242;
+  border-radius: 20px;
+  text-overflow:ellipsis;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+input[type="file"]:after {
+  content: "\1F4C2";
+  visibility: visible;
+  position: absolute;
+  right: 8px;
+  margin-top: 6px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button{
+  color:white;
+  background-color: #424242;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
 }
-
+.GifOutput{
+  border-radius: 20px;
+  background-color: #0c0c0c;
+}
+.Settings{
+  background-color: #0c0c0c;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 200px;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -2px;
+  align-items: center;
+  overflow: hidden;
+}
