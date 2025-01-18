@@ -104,6 +104,7 @@ input[type="file"]:before {
   border-radius: 20px;
   text-overflow:ellipsis;
   cursor: pointer;
+  white-space: nowrap;
 }
 input[type="file"]:after {
   content: "\1F4C2";
