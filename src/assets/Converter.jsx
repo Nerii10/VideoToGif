@@ -138,9 +138,9 @@ export default function Converter() {
                   
 
                   <div style={{width:"200px", backgroundColor:"#101010",position:"relative",display:"flex",color:"#101010",borderRadius:"20px"}}>
-                    .
+                  <br></br>
                     <div style={{color:"#91ff78",position:"absolute", backgroundColor:"#91ff78",width:`${ConvertingProgress.progress}%`,transition:"0.5s ease",borderRadius:"20px"}}>
-                    .
+                    <br></br>
                     </div>
                   </div>
 
