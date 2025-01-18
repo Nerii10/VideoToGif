@@ -13,6 +13,7 @@ export default function Converter() {
   const [Size, setSize] = useState(100)
   const [FramesPS, setFramesPS] = useState(30)
   const [SettingsMenu,setSettingsMenu] = useState(false)
+  const [Text , setText] = useState("")
   const [ConvertingProgress, setConvertingProgress] = useState({
     time: 0,
     progress: 0,
@@ -44,12 +45,14 @@ export default function Converter() {
 
       const videoData = await fetchFile(Video); // Convert file object to buffer
       await ffmpeg.writeFile('video.mp4', videoData); // Save file as video.mp4 in FFmpeg system
+      await ffmpeg.writeFile('arial.ttf', await fetchFile('https://raw.githubusercontent.com/ffmpegwasm/testdata/master/arial.ttf'));
+      
       setConverting(true)
       await ffmpeg.exec([
         '-i', 
         'video.mp4', 
         '-vf', 
-        `fps=${FramesPS},scale=${Size}:-1:flags=lanczos`,
+        `fps=${FramesPS},scale=${Size}:-1:flags=lanczos,drawtext=fontfile=/arial.ttf:text='${Text}':x=(w-text_w)/2:y=10:fontsize=24:fontcolor=white`,
         'output.gif'
       ]);
 
@@ -88,15 +91,17 @@ export default function Converter() {
     <div className="Container">
       <div className="Converter">
           <div className='Header'>
-            <h1>
+            <h1 style={{display:"flex"}}>
             {headerText.split("").map((char, index) => {
-      return <motion.span
-            initial={{filter:"blur(15px)",opacity:0,}}
-            whileInView={{filter:"blur(0px)",opacity:1}}
+      return <motion.p
+            initial={{filter:"blur(2px)",opacity:0,x:200}}
+            animate={{filter:"blur(0px)",opacity:1,x:0}}
             viewport={{ once: true }}
+            key={index}
+            style={{width: (char== " ") ? "10px" : "fit-content"}}
             transition={{duration:0.5,ease:"circInOut",delay:index*0.02}}
-            >{char}
-            </motion.span>;
+            >{char == " " ? " " : char}
+            </motion.p>;
     })}
             </h1>
           </div>
@@ -115,11 +120,18 @@ export default function Converter() {
               animate={{ height: SettingsMenu ? 'auto' : "0px", opacity: SettingsMenu ? 1 : 1 ,padding:SettingsMenu ? "20px" : "0px"}}
               transition={{duration:0.5, ease:"circInOut"}}
               >
-                  <label for="Size">Size {Size}</label>
-                  <input type='range' min="100" max="1000" id='Size' value={Size} onChange={handleSizeChange}></input>
-                  <br></br>
-                  <label for="Fps">Fps {FramesPS}</label>
-                  <input type='range' min="15" max="35" id='Fps' value={FramesPS} onChange={handleFramesPSChange}></input>
+                <div className='Setting'>
+                  <label for="Size" style={{position:"absolute",top:0}}>Size {Size}</label>
+                  <input type='range' className='Range' min="100" max="1000" id='Size' value={Size} onChange={handleSizeChange}></input>
+                </div>
+
+                <div className='Setting'>
+                  <label for="Fps"  style={{position:"absolute",top:0}}>Fps {FramesPS}</label>
+                  <input type='range' className='Range' min="15" max="35" id='Fps' value={FramesPS} onChange={handleFramesPSChange}></input>
+                </div>
+                <div className='Setting'>
+                  <input type='text' id='txt' placeholder='Text overlay' value={Text} onChange={(event)=>{setText(event.target.value)}}></input>
+                </div>
               </motion.div>
           </div>
           <div className='OutputContainer'>

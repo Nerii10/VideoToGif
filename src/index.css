@@ -65,6 +65,9 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  width: 100%;
+  font-size: 16px;
 }
 .Output{
   display: flex;
@@ -136,4 +139,66 @@ button{
   margin-top: -2px;
   align-items: center;
   overflow: hidden;
+}
+.Setting{
+  position: relative;
+  height: 30px;
+  padding: 20px;
+}
+input[type="range"] {
+  -webkit-appearance: none; /* Usuwa domyślny wygląd w WebKit (Chrome, Safari) */
+  -moz-appearance: none;    /* Usuwa domyślny wygląd w Firefox */
+  appearance: none;         /* Usuwa domyślny wygląd w innych przeglądarkach */
+  width: 100%;              /* Długość suwaka */
+  background: #ddd;         /* Kolor tła suwaka */
+  border-radius: 25px;       /* Zaokrąglone rogi suwaka */
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #ffffff;      /* Kolor toru w Chrome/Safari */
+  border-radius: 25px;       /* Zaokrąglone rogi toru w Chrome/Safari */
+}
+
+input[type="range"]::-moz-range-track {
+  background: #ffffff;      /* Kolor toru w Firefox */
+  border-radius: 25px;       /* Zaokrąglone rogi toru w Firefox */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Usuwa domyślny wygląd w WebKit (Chrome, Safari) */
+  appearance: none;         /* Usuwa domyślny wygląd w innych przeglądarkach */
+  width: 10px;              /* Szerokość suwaka */
+  height: 10px;   
+  scale: 2; 
+  background: #05a7c4;      /* Kolor suwaka */
+  border-radius: 50%;       /* Okrągły kształt suwaka */
+  cursor: pointer;          /* Zmiana kursora na wskaźnik */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Cień na suwaku */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 10px;              /* Szerokość suwaka w Firefox */
+  background: #ff5733;      /* Kolor suwaka w Firefox */
+  border-radius: 50%;       /* Okrągły kształt w Firefox */
+  cursor: pointer;          /* Zmiana kursora na wskaźnik */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Cień na suwaku */
+}
+
+input[type="range"]:focus {
+  outline: none; 
+}
+input[type="text"]{
+  border-radius: 20px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 600px){
+  .Header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    font-size: 12px;
+  }
 }
