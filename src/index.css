@@ -181,7 +181,7 @@ input[type="range"]::-moz-range-thumb {
   background: #ff5733;      /* Kolor suwaka w Firefox */
   border-radius: 50%;       /* Okrągły kształt w Firefox */
   cursor: pointer;          /* Zmiana kursora na wskaźnik */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Cień na suwaku */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
 }
 
 input[type="range"]:focus {

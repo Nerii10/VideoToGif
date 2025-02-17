@@ -58,7 +58,7 @@ export default function Converter() {
 
    
 
-      const gifData = await ffmpeg.readFile('output.gif'); // Read the generated GIF file
+      const gifData = await ffmpeg.readFile('output.gif'); 
       const gifBlob = new Blob([gifData.buffer], { type: 'image/gif' });
       const gifObjectUrl = URL.createObjectURL(gifBlob);
       setConverting(false)
